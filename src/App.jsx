@@ -24,7 +24,7 @@ function App() {
 
         <Route path="/Login" element={<Login />} />
         <Route path="/meal/:CategoryName" element={<MealCategory />} />
-        <Route path="/meal/:MealId" element={<RecipeInfo />} />
+        <Route path="/info/:MealId" element={<RecipeInfo />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="*" element={<Navigate to="/Login" replace={true} />} />
 

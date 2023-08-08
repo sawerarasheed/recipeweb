@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 
+
 export default function Meal() {
     const [loader, setLoader] = useState(true)
     const [Categories, setCategories] = useState([]);

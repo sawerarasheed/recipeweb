@@ -1,15 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 export default function MealCategory() {
     const { CategoryName } = useParams()
-    const { dish, setDish } = useState([])
+    const [item, setitem]= useState([])
 
     useEffect(() => {
-        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${CategoryName}`).then(json =>  setDish(json.data.meals))
+        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${CategoryName}`)
+        .then(json =>  setitem(json.data.meals))
+        .catch(error=>console.log(error))
     }, [CategoryName])
 
 
@@ -24,19 +26,19 @@ export default function MealCategory() {
                 </div>
                 <div className="row">
                     {
-                        dish.map((val, key) =>
-                            <div className="col-md-6" key={key}>
+                        item?.map((val, key) =>
+                            <div className="col-md-6 my-3" key={key}>
+                                <Link className='text-decoration-none' to={`/info/${val.idMeal}`}>
                                 <Card >
-                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Img variant="top" src={val.strMealThumb} />
                                     <Card.Body>
-                                        <Card.Title>Card Title</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the
-                                            bulk of the card's content.
-                                        </Card.Text>
-                                        <Button variant="primary">Go somewhere</Button>
+                                        <Card.Title>{val.strMeal}</Card.Title>
+                                        
+                                        
                                     </Card.Body>
                                 </Card>
+                                </Link>
+                                
                             </div>
                         )
                     }

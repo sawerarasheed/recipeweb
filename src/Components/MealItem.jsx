@@ -3,7 +3,7 @@ import  './Meal.css'
 // import { useNavigate } from "react-router-dom";
 
 const Mealitem=({data})=>{
-    console.log(data)
+    // console.log(data)
 //     let navigate=useNavigate();
     return(
 
